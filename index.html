@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guardian Style | Premium Plans</title>
+    <title>Guardian Style | Enrollment & Payment</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,23 +11,22 @@
     <header class="hero">
         <div class="hero-content">
             <h1>Well-being, inspired.</h1>
-            <p>Insurance plans and policies that help you thrive — so you can live your today while preparing for your tomorrow.</p>
+            <p>Comprehensive insurance plans designed for your future. Simple enrollment, secure payment.</p>
             
             <div class="selector-container">
                 <p>I am...</p>
                 <nav class="pill-nav">
-                    <a href="#" class="nav-item">an individual or family</a>
+                    <a href="#" class="nav-item">an individual</a>
                     <a href="#" class="nav-item">an employer</a>
                     <a href="#" class="nav-item">a broker</a>
-                    <a href="#" class="nav-item">a provider</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <main class="main-content">
-        <span class="section-tag">Our products</span>
-        <h2 class="section-title">Well-being starts here</h2>
+        <span class="section-tag">Direct Enrollment</span>
+        <h2 class="section-title">Biennial Insurance Plans</h2>
 
         <div class="card-grid">
             
@@ -37,38 +36,82 @@
                     <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=500&q=60" alt="Life Insurance" class="card-img">
                 </div>
                 <div class="card-body">
-                    <h3>Life insurance</h3>
-                    <p>Protection for you and those you love.</p>
-                    
+                    <h3>Life Insurance</h3>
                     <div class="price-tag">
                         <span class="amount">$1,000</span>
                         <span class="frequency">every 2 years</span>
-                        <small class="comparison">Total cost for 24 months</small>
                     </div>
 
-                    <a href="https://www.paypal.com/paypalme/adriancoyoca47/1000" class="paypal-btn">Pay $1,000 via PayPal</a>
+                    <form class="enrollment-form" action="https://formspree.io/f/xnjlbbvq" method="POST">
+                        <input type="hidden" name="Plan" value="Life Insurance">
+                        <div class="form-row">
+                            <input type="text" name="firstName" placeholder="First Name" required>
+                            <input type="text" name="lastName" placeholder="Last Name" required>
+                        </div>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone" placeholder="Mobile Number" required>
+                        
+                        <button type="submit" class="paypal-btn">Submit & Pay $1,000</button>
+                    </form>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-image-container">
-                    <div class="savings-badge">Special Rate</div>
+                    <div class="savings-badge">Fixed Rate</div>
                     <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=60" alt="Disability" class="card-img">
                 </div>
                 <div class="card-body">
-                    <h3>Disability insurance</h3>
-                    <p>Protection that works when you can't.</p>
+                    <h3>Disability Insurance</h3>
                     <div class="price-tag">
                         <span class="amount">$1,000</span>
                         <span class="frequency">every 2 years</span>
-                        <small class="comparison">Locked-in biennial rate</small>
                     </div>
-                    <a href="https://www.paypal.com/paypalme/YOUR_USERNAME/1000" class="paypal-btn">Pay $1,000 via PayPal</a>
+
+                    <form class="enrollment-form" action="https://formspree.io/f/xnjlbbvq" method="POST">
+                        <input type="hidden" name="Plan" value="Disability Insurance">
+                        <div class="form-row">
+                            <input type="text" name="firstName" placeholder="First Name" required>
+                            <input type="text" name="lastName" placeholder="Last Name" required>
+                        </div>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone" placeholder="Mobile Number" required>
+                        
+                        <button type="submit" class="paypal-btn">Submit & Pay $1,000</button>
+                    </form>
                 </div>
             </div>
 
         </div>
     </main>
 
+    <script>
+        document.querySelectorAll('.enrollment-form').forEach(form => {
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const btn = this.querySelector('.paypal-btn');
+                const originalText = btn.textContent;
+                
+                btn.textContent = "Processing...";
+                btn.style.opacity = "0.7";
+
+                const data = new FormData(this);
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    // This sends them to PayPal ONLY after the form data is captured
+                    window.location.href = "https://www.paypal.com/paypalme/adriancoyoca47/1000";
+                } else {
+                    alert("Submission failed. Please check your connection.");
+                    btn.textContent = originalText;
+                    btn.style.opacity = "1";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
