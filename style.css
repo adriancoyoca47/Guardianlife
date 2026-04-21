@@ -1,0 +1,152 @@
+/* COLOR PALETTE & VARIABLES */
+:root {
+    --primary-blue: #00467f;
+    --paypal-gold: #ffc439;
+    --paypal-blue: #003087;
+    --bg-light: #f4f7f9;
+    --white: #ffffff;
+    --text-main: #333333;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1502920513352-87858971846c?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    color: white;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+/* PILL NAVIGATION */
+.selector-container p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.pill-nav {
+    display: flex;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    padding: 5px;
+    width: fit-content;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-item:hover {
+    background: var(--white);
+    color: var(--primary-blue);
+}
+
+/* CONTENT GRID */
+.main-content {
+    padding: 80px 10%;
+}
+
+.section-tag {
+    color: #d14900;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.section-title {
+    font-family: Georgia, serif;
+    color: var(--primary-blue);
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* CARDS */
+.card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-body h3 {
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+/* PAYPAL BUTTON */
+.paypal-btn {
+    display: block;
+    margin-top: 20px;
+    background-color: var(--paypal-gold);
+    color: var(--paypal-blue);
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.paypal-btn:hover {
+    background-color: #f2ba36;
+}
