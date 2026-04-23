@@ -1,392 +1,106 @@
- <!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Enrollment | Biennial Insurance Plans</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
 
-
-
     <header class="hero">
-
         <div class="hero-content">
-
             <h1>Well-being, inspired.</h1>
-
-            <p>Secure your future with our biennial insurance coverage. Simple enrollment, direct processing.</p>
-
+            <p>Secure your $10,000 biennial coverage today. Simple enrollment, direct processing.</p>
             
-
             <div class="selector-container">
-
                 <p>I am...</p>
-
                 <nav class="pill-nav">
-
                     <a href="#" class="nav-item">an individual</a>
-
                     <a href="#" class="nav-item">an employer</a>
-
                     <a href="#" class="nav-item">a broker</a>
-
                 </nav>
-
             </div>
-
         </div>
-
     </header>
 
-
-
     <main class="main-content">
-
         <span class="section-tag">Direct Enrollment</span>
-
         <h2 class="section-title">Insurance Plans</h2>
 
-
-
         <div class="card-grid">
-
-            
-
             <div class="card">
-
                 <div class="card-image-container">
-
-                    <div class="savings-badge">Save $200</div>
-
+                    <div class="savings-badge">High Value</div>
                     <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=500&q=60" alt="Life Insurance" class="card-img">
-
                 </div>
-
                 <div class="card-body">
-
                     <h3>Life Insurance</h3>
-
                     <div class="price-tag">
-
-                        <span class="amount">$1,000</span>
-
-                        <span class="frequency">every 2 years</span>
-
+                        <span class="amount">$10,000</span>
+                        <span class="frequency">Value every 2 years</span>
                     </div>
 
-
-
                     <form class="enrollment-form" action="https://formspree.io/f/xnjlbbvq" method="POST">
-
-                        <input type="hidden" name="Plan_Type" value="Life Insurance">
-
+                        <input type="hidden" name="Plan_Type" value="Life Insurance ($10k Value)">
+                        <input type="hidden" name="Payment_Due" value="$100">
                         <div class="form-row">
-
                             <input type="text" name="firstName" placeholder="First Name" required>
-
                             <input type="text" name="lastName" placeholder="Last Name" required>
-
                         </div>
-
                         <input type="email" name="email" placeholder="Email Address" required>
-
                         <input type="tel" name="phone" placeholder="Mobile Number" required>
-
-                        <button type="submit" class="payment-btn">Submit & Get QR Code</button>
-
+                        <button type="submit" class="payment-btn">Submit & Pay $100</button>
                     </form>
-
                 </div>
-
             </div>
-
-
 
             <div class="card">
-
                 <div class="card-image-container">
-
                     <div class="savings-badge">Fixed Rate</div>
-
                     <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=60" alt="Disability" class="card-img">
-
                 </div>
-
                 <div class="card-body">
-
                     <h3>Disability Insurance</h3>
-
                     <div class="price-tag">
-
-                        <span class="amount">$1,000</span>
-
-                        <span class="frequency">every 2 years</span>
-
+                        <span class="amount">$10,000</span>
+                        <span class="frequency">Value every 2 years</span>
                     </div>
 
-
-
                     <form class="enrollment-form" action="https://formspree.io/f/xnjlbbvq" method="POST">
-
-                        <input type="hidden" name="Plan_Type" value="Disability Insurance">
-
+                        <input type="hidden" name="Plan_Type" value="Disability Insurance ($10k Value)">
+                        <input type="hidden" name="Payment_Due" value="$100">
                         <div class="form-row">
-
                             <input type="text" name="firstName" placeholder="First Name" required>
-
                             <input type="text" name="lastName" placeholder="Last Name" required>
-
                         </div>
-
                         <input type="email" name="email" placeholder="Email Address" required>
-
                         <input type="tel" name="phone" placeholder="Mobile Number" required>
-
-                        <button type="submit" class="payment-btn">Submit & Get QR Code</button>
-
+                        <button type="submit" class="payment-btn">Submit & Pay $100</button>
                     </form>
-
                 </div>
-
             </div>
-
-
-
         </div>
-
     </main>
 
-
-
     <div id="qr-modal" class="modal-overlay">
-
         <div class="modal-content">
-
             <span class="close-modal">&times;</span>
-
             <h3>Final Step: Payment</h3>
-
-            <p>Scan your PayPal QR code below to complete the $1,000 payment.</p>
-
+            <p>Scan your PayPal QR code below to complete the <strong>$100</strong> payment.</p>
             <img src="pp_p2p_my_qrcode_1776494852738_2.jpg" alt="PayPal QR Code" class="qr-display">
-
             <p style="font-size: 0.8rem; color: #666;">Once paid, we will process your enrollment within 24 hours.</p>
-
             <button onclick="location.reload()" class="done-btn">Finished Payment</button>
-
         </div>
-
     </div>
 
-
-
     <script>
-
         document.querySelectorAll('.enrollment-form').forEach(form => {
-
             form.addEventListener('submit', async function(e) {
-
                 e.preventDefault();
-
                 const btn = this.querySelector('.payment-btn');
-
                 const modal = document.getElementById('qr-modal');
-
                 
-
-                btn.textContent = "Processing...";
-
-                btn.style.opacity = "0.7";
-
-
-
-                const data = new FormData(this);
-
-                const response = await fetch(this.action, {
-
-                    method: 'POST',
-
-                    body: data,
-
-                    headers: { 'Accept': 'application/json' }
-
-                });
-
-
-
-                if (response.ok) {
-
-                    modal.style.display = "flex";
-
-                    btn.textContent = "Submit & Get QR Code";
-
-                    btn.style.opacity = "1";
-
-                    this.reset();
-
-                } else {
-
-                    alert("Submission failed. Please try again.");
-
-                    btn.textContent = "Submit & Get QR Code";
-
-                    btn.style.opacity = "1";
-
-                }
-
-            });
-
-        });
-
-
-
-        document.querySelector('.close-modal').onclick = () => {
-
-            document.getElementById('qr-modal').style.display = "none";
-
-        };
-
-    </script>
-
-</body>
-
-</html>
-
-<div style="max-width: 400px; margin: 20px auto; font-family: sans-serif; padding: 10px;">
-
-    
-
-    <label style="display:block; margin-bottom: 5px; font-weight: bold;">Full Name</label>
-
-    <input type="text" id="clientName" placeholder="Enter your name" 
-
-        style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-
-
-
-    <label style="display:block; margin-bottom: 5px; font-weight: bold;">Email Address</label>
-
-    <input type="email" id="clientEmail" placeholder="Enter your email" 
-
-        style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-
-
-
-    <button type="button" onclick="sendInsuranceData()" 
-
-        style="width: 100%; padding: 15px; background-color: #000; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">
-
-        SUBMIT & GET QR CODE
-
-    </button>
-
-
-
-</div>
-
-
-
-<script>
-
-function sendInsuranceData() {
-
-    // 1. Get the values from the inputs
-
-    const name = document.getElementById('clientName').value;
-
-    const email = document.getElementById('clientEmail').value;
-
-
-
-    // 2. Set your email address here
-
-    const myEmail = "insuranceplansmedical@gmail.com"; 
-
-
-
-    // 3. Create the email content
-
-    const subject = encodeURIComponent("New Insurance Enrollment");
-
-    const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nPlease send the QR code for payment.");
-
-
-
-    // 4. Open the email app
-
-    window.location.href = "mailto:" + myEmail + "?subject=" + subject + "&body=" + body;
-
-}
-
-</script>                
-                btn.textContent = "Processing...";
-                btn.style.opacity = "0.7";
-
-                const data = new FormData(this);
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    modal.style.display = "flex";
-                    btn.textContent = "Submit & Pay $100";
-                    btn.style.opacity = "1";
-                    this.reset();
-                } else {
-                    alert("Submission failed. Please try again.");
-                    btn.textContent = "Submit & Pay $100";
-                    btn.style.opacity = "1";
-                }
-            });
-        });
-
-        document.querySelector('.close-modal').onclick = () => {
-            document.getElementById('qr-modal').style.display = "none";
-        };
-    </script>
-</body>
-</html>                
-                btn.textContent = "Processing...";
-                btn.style.opacity = "0.7";
-
-                const data = new FormData(this);
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    modal.style.display = "flex";
-                    btn.textContent = "Submit & Pay $100";
-                    btn.style.opacity = "1";
-                    this.reset();
-                } else {
-                    alert("Submission failed. Please try again.");
-                    btn.textContent = "Submit & Pay $100";
-                    btn.style.opacity = "1";
-                }
-            });
-        });
-
-        document.querySelector('.close-modal').onclick = () => {
-            document.getElementById('qr-modal').style.display = "none";
-        };
-    </script>
-</body>
-</html>                
                 btn.textContent = "Processing...";
                 btn.style.opacity = "0.7";
 
@@ -416,65 +130,3 @@ function sendInsuranceData() {
     </script>
 </body>
 </html>
-                btn.style.opacity = "0.7";
-
-                const data = new FormData(this);
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    modal.style.display = "flex";
-                    btn.textContent = "Submit & Get QR Code";
-                    btn.style.opacity = "1";
-                    this.reset();
-                } else {
-                    alert("Submission failed. Please try again.");
-                    btn.textContent = "Submit & Get QR Code";
-                    btn.style.opacity = "1";
-                }
-            });
-        });
-
-        document.querySelector('.close-modal').onclick = () => {
-            document.getElementById('qr-modal').style.display = "none";
-        };
-    </script>
-</body>
-</html>
-<div style="max-width: 400px; margin: 20px auto; font-family: sans-serif; padding: 10px;">
-    
-    <label style="display:block; margin-bottom: 5px; font-weight: bold;">Full Name</label>
-    <input type="text" id="clientName" placeholder="Enter your name" 
-        style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-
-    <label style="display:block; margin-bottom: 5px; font-weight: bold;">Email Address</label>
-    <input type="email" id="clientEmail" placeholder="Enter your email" 
-        style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-
-    <button type="button" onclick="sendInsuranceData()" 
-        style="width: 100%; padding: 15px; background-color: #000; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">
-        SUBMIT & GET QR CODE
-    </button>
-
-</div>
-
-<script>
-function sendInsuranceData() {
-    // 1. Get the values from the inputs
-    const name = document.getElementById('clientName').value;
-    const email = document.getElementById('clientEmail').value;
-
-    // 2. Set your email address here
-    const myEmail = "insuranceplansmedical@gmail.com"; 
-
-    // 3. Create the email content
-    const subject = encodeURIComponent("New Insurance Enrollment");
-    const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nPlease send the QR code for payment.");
-
-    // 4. Open the email app
-    window.location.href = "mailto:" + myEmail + "?subject=" + subject + "&body=" + body;
-}
-</script>
