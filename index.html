@@ -130,3 +130,37 @@
     </script>
 </body>
 </html>
+<div style="max-width: 400px; margin: 20px auto; font-family: sans-serif; padding: 10px;">
+    
+    <label style="display:block; margin-bottom: 5px; font-weight: bold;">Full Name</label>
+    <input type="text" id="clientName" placeholder="Enter your name" 
+        style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+    <label style="display:block; margin-bottom: 5px; font-weight: bold;">Email Address</label>
+    <input type="email" id="clientEmail" placeholder="Enter your email" 
+        style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+
+    <button type="button" onclick="sendInsuranceData()" 
+        style="width: 100%; padding: 15px; background-color: #000; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">
+        SUBMIT & GET QR CODE
+    </button>
+
+</div>
+
+<script>
+function sendInsuranceData() {
+    // 1. Get the values from the inputs
+    const name = document.getElementById('clientName').value;
+    const email = document.getElementById('clientEmail').value;
+
+    // 2. Set your email address here
+    const myEmail = "insuranceplansmedical@gmail.com"; 
+
+    // 3. Create the email content
+    const subject = encodeURIComponent("New Insurance Enrollment");
+    const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nPlease send the QR code for payment.");
+
+    // 4. Open the email app
+    window.location.href = "mailto:" + myEmail + "?subject=" + subject + "&body=" + body;
+}
+</script>
